@@ -21,6 +21,8 @@
 
 Syngeos custom integration provides air quality data from [Syngeos](https://syngeos.pl/) stations to [Home Assistant](https://www.home-assistant.io/).
 
+<img width="837" height="516" alt="Syngeos integration entities screenshot" src="https://github.com/user-attachments/assets/5bab8709-5cad-43a1-bcf5-e74f3ae0d06f" />
+
 
 The integration provides following entities with data from configured Syngeos station:
 - temperature (*°C*)
@@ -79,3 +81,20 @@ To configure this integration in Home Assistant click the button below:
 [![Open your Home Assistant instance and start setting up a new integration.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=syngeos)
 
 Or go to: **Settings** → **Devices & services** → **Add integration** → **Syngeos**
+
+
+<img width="446" height="272" alt="Syngeos integration select configuration method screenshot" src="https://github.com/user-attachments/assets/7e1cd084-19b3-4ca8-abcb-f24387c18594" />
+
+You can add your SmogTok station in 3 ways:
+- by finding the nearest stations and picking one of them
+
+  <img width="443" height="275" alt="Syngeos integration select station from the nearest ones screenshot" src="https://github.com/user-attachments/assets/e13e2f38-103f-4d8e-963b-25e770030690" />
+- by picking it from alphabetical list of active stations
+
+  <img width="444" height="246" alt="Syngeos integration select station from the alphabetical list screenshot" src="https://github.com/user-attachments/assets/032803d3-6460-4f5f-9e51-c432fcf21e7c" />
+- by manually entering station ID
+
+  <img width="444" height="300" alt="Syngeos integration select station by ID screenshot" src="https://github.com/user-attachments/assets/da6f2895-4c41-4988-a1bf-2993be60d66a" />
+
+
+
