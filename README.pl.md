@@ -21,6 +21,9 @@
 
 Niestandardowa integracja Syngeos dostarczająca dane o jakości powietrza z stacji [Syngeos](https://syngeos.pl/) do [Home Assistant](https://www.home-assistant.io/).
 
+<img width="837" height="516" alt="Zrzut ekranu encji integracji Syngeos" src="https://github.com/user-attachments/assets/62a57418-aa78-4a79-b87c-20ba8b67183a" />
+
+
 Integracja dostarcza następujące encje z skonfigurowanej stacji Syngeos:
 - temperatura (*°C*)
 - wilgotność (*%*)
@@ -78,3 +81,16 @@ Skonfiguruj tą integrację w Home Assistant używając przycisku poniżej:
 [![Open your Home Assistant instance and start setting up a new integration.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=syngeos)
 
 Lub przejdź do: **Ustawienia** → **Urządzenia oraz usługi** → **Dodaj integrację** → **Syngeos**
+
+<img width="444" height="272" alt="Zrzut ekranu metody konfiguracji integracji Syngeos" src="https://github.com/user-attachments/assets/419c9723-6c8c-43e4-9a53-a23d462429b8" />
+
+Możesz dodać stację SmogTok na 3 sposoby:
+- znajdując najbliższe stacje i wybierając jedną z nich
+
+  <img width="443" height="296" alt="Zrzut ekranu konfiguracji integracji Syngeos przez znalezienie najbliższych stacji" src="https://github.com/user-attachments/assets/1ec546bf-c95a-40d4-a7f4-529f0569b0b3" />
+- wybierając z alfabetycznej listy aktywnych stacji
+
+  <img width="442" height="258" alt="Zrzut ekranu konfiguracji integracji Syngeos przez alfabetyczna liste stacji" src="https://github.com/user-attachments/assets/54856a45-da3f-4e09-a0f6-5ed38f4fa2fe" />
+- wprowadzić manualnie ID stacji
+
+  <img width="442" height="300" alt="Zrzut ekranu konfiguracji integracji Syngeos przez podanie ID stacji" src="https://github.com/user-attachments/assets/b444e809-b69b-4b61-92b7-b5c889c9d8cc" />
