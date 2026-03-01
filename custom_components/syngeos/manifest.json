@@ -1,0 +1,13 @@
+{
+  "domain": "syngeos",
+  "name": "Syngeos",
+  "codeowners": [
+    "@ptrkoz"
+  ],
+  "config_flow": true,
+  "documentation": "https://github.com/ptrkoz/ha-syngeos",
+  "integration_type": "service",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/ptrkoz/ha-syngeos/issues",
+  "version": "v0.0.0"
+}

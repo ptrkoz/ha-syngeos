@@ -1,0 +1,106 @@
+{
+    "config": {
+        "abort": {
+            "already_configured": "Lokalizacja jest już skonfigurowana",
+            "cannot_connect": "Nie udało się połączyć",
+            "invalid_response": "Nieprawidłowa odpowiedź API od serwera",
+            "no_data_available": "Brak danych dla wybranej stacji",
+            "unknown": "Nieoczekiwany błąd"
+        },
+        "error": {
+            "cannot_connect": "Nie udało się połączyć",
+            "invalid_response": "Nieprawidłowa odpowiedź API od serwera",
+            "no_data_available": "Brak danych dla wybranej stacji",
+            "no_stations": "Nie znaleziono żadnych stacji",
+            "no_nearby_stations": "Nie znaleziono żadnych stacji w pobliżu",
+            "unknown": "Nieoczekiwany błąd"
+        },
+        "step": {
+            "user": {
+                "description": "W jaki sposób chcesz wskazać stację Syngeos?",
+                "menu_options": {
+                "station_geolocation_filter": "Znajdź stację Syngeos blisko mojej lokalizacji (zalecane)",
+                "station_list_filter": "Wybierz stację Syngeos z listy",
+                "station_id": "Wprowadź ręcznie ID stacji Syngeos (zaawansowane)"
+                },
+                "menu_option_descriptions": {
+                  "station_geolocation_filter": "Lista stacji Syngeos w promieniu {nearby_radius} kilometrów",
+                  "station_list_filter": "Lista stacji Syngeos w porządku alfabetycznym",
+                  "station_id": "Wpisz ID stacji Syngeos"
+                }
+            },
+            "station_geolocation_filter": {
+                "data": {
+                "search_filter": "Jakie typ stacji chcesz wyszukać?"
+                }
+            },
+            "station_geolocation": {
+                "description": "Jeśli nie widzisz swojej stacji, może ona nie być już aktywna lub może być nową stacją. W takim przypadku możesz spróbować wprowadzić ID stacji ręcznie (otwórz ponownie dodawnie integracji).\nMożesz przejść do [Ustawienia -> Obszary, strefy i etykiety -> Strefy](/config/zone) i dostosować lokalizację swojego domu.",
+                "data": {
+                "syngeos_station": "Stacja Syngeos"
+                },
+                "data_description": {
+                "syngeos_station": "Lista {station_number} stacji Syngeos w promieniu {nearby_radius} kilometrów posortowana od najbliższej."
+                }
+            },
+            "station_list_filter": {
+                "data": {
+                "search_filter": "Jakie typ stacji chcesz wyszukać?"
+                }
+            },
+            "station_list": {
+                "description": "Jeśli nie widzisz swojej stacji, może ona nie być już aktywna lub może być nową stacją. W takim przypadku możesz spróbować wprowadzić ID stacji ręcznie (otwórz ponownie dodawnie integracji).",
+                "data": {
+                    "syngeos_station": "Stacja Syngeos"
+                },
+                "data_description": {
+                  "syngeos_station": "Lista stacji Syngeos w porządku alfabetycznym."
+                }
+            },
+            "station_id": {
+                "description": "Aby uzyskać ID stacji Syngeos:\n1. wejdź na {deviceslist_url}\n2. wybierz stację, z której chcesz uzyskać dane\n3. ID stacji znajduje się w adresie URL, np. dla {example_deviceslist_url} ID stacji to {example_device_id}",
+                "data": {
+                    "id": "ID stacji Syngeos"
+                },
+                "data_description": {
+                  "id": "Wprowadź ID stacji Syngeos, aby skonfigurować."
+                }
+            }
+        }
+    },
+    "selector": {
+        "search_filter": {
+        "options": {
+            "all": "Wyszukaj wszystkie typy stacji",
+            "pm10": "Wyszukaj stacje z sensorem PM10",
+            "pm2_5": "Wyszukaj stacje z sensorem PM2,5",
+            "caqi": "Wyszukaj stacje z indeksem CAQI",
+            "co": "Wyszukaj stacje z sensorem tlenku węgla (CO)",
+            "no2": "Wyszukaj stacje z sensorem dwutlenku azotu (NO2)",
+            "so2": "Wyszukaj stacje z sensorem dwutlenek siarki (SO2)",
+            "o3": "Wyszukaj stacje z sensorem ozonu (O3)",
+            "c6h6": "Wyszukaj stacje z sensorem benzenu (C6H6)",
+            "ch2o": "Wyszukaj stacje z sensorem formaldehydu (CH2O)",
+            "noise": "Wyszukaj stacje z sensorem poziomu hałasu"
+        }
+        }
+    },
+    "entity": {
+        "sensor": {
+            "temperature": {"name": "Temperatura"},
+            "humidity": {"name": "Wilgotność"},
+            "pressure": {"name": "Ciśnienie powietrza"},
+            "pm1": {"name": "PM1"},
+            "pm25": {"name": "PM2,5"},
+            "pm10": {"name": "PM10"},
+            "caqi": {"name": "Indeks CAQI"},
+            "co": {"name": "Tlenek węgla"},
+            "no2": {"name": "Dwutlenek azotu"},
+            "so2": {"name": "Dwutlenek siarki"},
+            "o3": {"name": "Ozon"},
+            "c6h6": {"name": "Benzen"},
+            "ch2o": {"name": "Formaldehyd"},
+            "noise": {"name": "Hałas"}
+        }
+  }
+}

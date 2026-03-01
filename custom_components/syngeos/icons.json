@@ -1,0 +1,18 @@
+{
+  "entity": {
+    "sensor": {
+      "caqi": {
+        "default": "mdi:air-filter"
+      },
+      "c6h6": {
+        "default": "mdi:molecule"
+      },
+      "ch2o": {
+        "default": "mdi:molecule"
+      },
+      "noise": {
+        "default": "mdi:volume-high"
+      }
+    }
+  }
+}
