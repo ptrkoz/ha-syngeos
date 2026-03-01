@@ -85,7 +85,7 @@ Or go to: **Settings** → **Devices & services** → **Add integration** → **
 
 <img width="446" height="272" alt="Syngeos integration select configuration method screenshot" src="https://github.com/user-attachments/assets/7e1cd084-19b3-4ca8-abcb-f24387c18594" />
 
-You can add your SmogTok station in 3 ways:
+You can add your Syngeos station in 3 ways:
 - by finding the nearest stations and picking one of them
 
   <img width="443" height="275" alt="Syngeos integration select station from the nearest ones screenshot" src="https://github.com/user-attachments/assets/e13e2f38-103f-4d8e-963b-25e770030690" />

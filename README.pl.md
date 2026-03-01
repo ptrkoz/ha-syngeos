@@ -84,7 +84,7 @@ Lub przejdź do: **Ustawienia** → **Urządzenia oraz usługi** → **Dodaj int
 
 <img width="444" height="272" alt="Zrzut ekranu metody konfiguracji integracji Syngeos" src="https://github.com/user-attachments/assets/419c9723-6c8c-43e4-9a53-a23d462429b8" />
 
-Możesz dodać stację SmogTok na 3 sposoby:
+Możesz dodać stację Syngeos na 3 sposoby:
 - znajdując najbliższe stacje i wybierając jedną z nich
 
   <img width="443" height="296" alt="Zrzut ekranu konfiguracji integracji Syngeos przez znalezienie najbliższych stacji" src="https://github.com/user-attachments/assets/1ec546bf-c95a-40d4-a7f4-529f0569b0b3" />
