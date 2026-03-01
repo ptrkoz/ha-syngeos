@@ -1,2 +1,2 @@
 # ha-syngeos
-Syngeos custom integration for Home Assistant 
+Syngeos integration for Home Assistant
