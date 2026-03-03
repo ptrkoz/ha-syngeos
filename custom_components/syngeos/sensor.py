@@ -220,4 +220,4 @@ class SyngeosSensor(SyngeosEntity, SensorEntity):
     @property
     def available(self) -> bool:
         """Return True if entity is available."""
-        return super().available or self.native_value is not None
+        return self.native_value is not None

@@ -48,12 +48,6 @@ class SyngeosFlowHandler(ConfigFlow, domain=DOMAIN):
 
     VERSION = 1
 
-    def __init__(self) -> None:
-        """Constructor of SyngeosFlowHandler class."""
-        self.syngeos_client: SyngeosClient = SyngeosClient(
-            session=async_get_clientsession(self.hass)
-        )
-
     async def async_step_user(
         self, user_input: dict[str, Any] | None = None
     ) -> ConfigFlowResult:
@@ -71,10 +65,11 @@ class SyngeosFlowHandler(ConfigFlow, domain=DOMAIN):
 
     async def get_list_of_stations(self, search_filter) -> list[dict[str, Any]]:
         """Gets the list of Syngeos stations."""
+        client = SyngeosClient(session=async_get_clientsession(self.hass))
         stations = []
         if search_filter == "all":
             tasks = [
-                self.syngeos_client.async_get_list_of_stations(
+                client.async_get_list_of_stations(
                     LIST_OF_STATIONS_API_URL.format(filter_type=filter_type)
                 )
                 for filter_type in FILTER_TYPES
@@ -91,7 +86,7 @@ class SyngeosFlowHandler(ConfigFlow, domain=DOMAIN):
                         stations.append(station["device"])
                         ids.append(station["device"]["id"])
         else:
-            result = await self.syngeos_client.async_get_list_of_stations(
+            result = await client.async_get_list_of_stations(
                 LIST_OF_STATIONS_API_URL.format(filter_type=search_filter)
             )
             stations = [station["device"] for station in result if "device" in station]
@@ -341,7 +336,8 @@ class SyngeosFlowHandler(ConfigFlow, domain=DOMAIN):
 
     async def validate_input(self, data: dict[str, Any]) -> dict[str, Any]:
         """Validate connection."""
-        response = await self.syngeos_client.async_get_data(data[CONF_ID])
+        client = SyngeosClient(session=async_get_clientsession(self.hass))
+        response = await client.async_get_data(data[CONF_ID])
         if isinstance(response, dict) and response == {}:
             raise SyngeosNoDataAvailable
         if not response:
