@@ -12,7 +12,7 @@ import voluptuous as vol
 from homeassistant.config_entries import ConfigFlow, ConfigFlowResult
 from homeassistant.const import CONF_ID
 from homeassistant.helpers import config_validation as cv
-from homeassistant.helpers.aiohttp_client import async_create_clientsession
+from homeassistant.helpers.aiohttp_client import async_get_clientsession
 from homeassistant.helpers.selector import (
     SelectOptionDict,
     SelectSelector,
@@ -48,6 +48,12 @@ class SyngeosFlowHandler(ConfigFlow, domain=DOMAIN):
 
     VERSION = 1
 
+    def __init__(self) -> None:
+        """Constructor of SyngeosFlowHandler class."""
+        self.syngeos_client: SyngeosClient = SyngeosClient(
+            session=async_get_clientsession(self.hass)
+        )
+
     async def async_step_user(
         self, user_input: dict[str, Any] | None = None
     ) -> ConfigFlowResult:
@@ -65,13 +71,10 @@ class SyngeosFlowHandler(ConfigFlow, domain=DOMAIN):
 
     async def get_list_of_stations(self, search_filter) -> list[dict[str, Any]]:
         """Gets the list of Syngeos stations."""
-        client = SyngeosClient(
-            session=async_create_clientsession(self.hass),
-        )
         stations = []
         if search_filter == "all":
             tasks = [
-                client.async_get_list_of_stations(
+                self.syngeos_client.async_get_list_of_stations(
                     LIST_OF_STATIONS_API_URL.format(filter_type=filter_type)
                 )
                 for filter_type in FILTER_TYPES
@@ -88,7 +91,7 @@ class SyngeosFlowHandler(ConfigFlow, domain=DOMAIN):
                         stations.append(station["device"])
                         ids.append(station["device"]["id"])
         else:
-            result = await client.async_get_list_of_stations(
+            result = await self.syngeos_client.async_get_list_of_stations(
                 LIST_OF_STATIONS_API_URL.format(filter_type=search_filter)
             )
             stations = [station["device"] for station in result if "device" in station]
@@ -338,10 +341,7 @@ class SyngeosFlowHandler(ConfigFlow, domain=DOMAIN):
 
     async def validate_input(self, data: dict[str, Any]) -> dict[str, Any]:
         """Validate connection."""
-        client = SyngeosClient(
-            session=async_create_clientsession(self.hass),
-        )
-        response = await client.async_get_data(data[CONF_ID])
+        response = await self.syngeos_client.async_get_data(data[CONF_ID])
         if isinstance(response, dict) and response == {}:
             raise SyngeosNoDataAvailable
         if not response:
@@ -355,7 +355,7 @@ class SyngeosFlowHandler(ConfigFlow, domain=DOMAIN):
             raise SyngeosInvalidResponse
         return response
 
-    async def get_filter_type(self, api_response) -> str:
+    async def get_filter_type(self, api_response: dict[str, Any]) -> str:
         """Get filter type to create station website URL."""
         api_sensors = [sensor.get("name") for sensor in api_response["sensors"]]
         if "pm10" in api_sensors:

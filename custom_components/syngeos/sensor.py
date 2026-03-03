@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Any
 
 from homeassistant.components.sensor import (
     SensorDeviceClass,
@@ -151,7 +151,6 @@ async def async_setup_entry(
 
     async_add_entities(
         SyngeosSensor(
-            title=entry.title,
             coordinator=entry.runtime_data.coordinator,
             entity_description=entity_description,
         )
@@ -166,7 +165,6 @@ class SyngeosSensor(SyngeosEntity, SensorEntity):
 
     def __init__(
         self,
-        title: str,
         coordinator: SyngeosDataUpdateCoordinator,
         entity_description: SensorEntityDescription,
     ) -> None:
@@ -174,8 +172,12 @@ class SyngeosSensor(SyngeosEntity, SensorEntity):
         super().__init__(coordinator, entity_description.key)
         self.entity_description = entity_description
 
-    def get_sensor_state(self, sensors: dict, sensor_name: str) -> str | None:
+    def get_sensor_state(
+        self, sensors: list[dict[str, Any]], sensor_name: str
+    ) -> str | None:
         """Get sensor state from sensor array and updates it's attributes."""
+        if sensors is None:
+            return None
         result = None
         for sensor in sensors:
             if (
@@ -218,19 +220,4 @@ class SyngeosSensor(SyngeosEntity, SensorEntity):
     @property
     def available(self) -> bool:
         """Return True if entity is available."""
-        apiData = self.coordinator.data
-        if apiData is None or not isinstance(apiData, dict):
-            return False
-
-        if self.entity_description.key == "pressure":
-            if self.get_sensor_state(apiData.get("sensors"), "air_pressure"):
-                return True
-            return False
-        if self.entity_description.key == "pm25":
-            if self.get_sensor_state(apiData.get("sensors"), "pm2_5"):
-                return True
-            return False
-
-        if self.get_sensor_state(apiData.get("sensors"), self.entity_description.key):
-            return True
-        return False
+        return super().available or self.native_value is not None

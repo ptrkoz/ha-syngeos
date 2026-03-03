@@ -9,7 +9,11 @@ from typing import Any
 import aiohttp
 
 from .const import STATION_DETAILS_API_URL
-from .exceptions import SyngeosClientCommunicationError, SyngeosClientError
+from .exceptions import (
+    SyngeosClientCommunicationError,
+    SyngeosClientError,
+    SyngeosInvalidResponse,
+)
 
 
 class SyngeosClient:
@@ -19,11 +23,14 @@ class SyngeosClient:
         """Syngeos API client."""
         self._session = session
 
-    async def async_get_list_of_stations(self, api_url) -> list[dict[str, Any]]:
+    async def async_get_list_of_stations(self, api_url: str) -> list[dict[str, Any]]:
         """Get list of stations from Syngeos API."""
-        return await self._api_wrapper(method="get", url=api_url)
+        stations = await self._api_wrapper(method="get", url=api_url)
+        if not isinstance(stations, list):
+            raise SyngeosInvalidResponse("Response object is not a list")
+        return stations
 
-    async def async_get_data(self, stationId: str) -> Any:
+    async def async_get_data(self, stationId: str) -> dict[str, Any]:
         """Get data from Syngeos API."""
         return await self._api_wrapper(
             method="get", url=STATION_DETAILS_API_URL.format(station_id=stationId)
@@ -42,6 +49,7 @@ class SyngeosClient:
                 response = await self._session.request(
                     method=method, url=url, headers=headers, json=data
                 )
+                response.raise_for_status()
                 return await response.json()
         except TimeoutError as exception:
             msg = f"Timeout errror fetching information - {exception}"
