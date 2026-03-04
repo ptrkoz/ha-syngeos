@@ -108,11 +108,15 @@ class SyngeosFlowHandler(ConfigFlow, domain=DOMAIN):
                 and station["id"] > 0
                 and "city" in station
                 and station["city"] != ""
-                and "address" in station
-                and station["address"] != ""
             ):
                 value = str(station["id"])
-                label = f"{station['city']} - {station['address']}"
+                label = f"{station['city']}"
+                if (
+                    "address" in station
+                    and station["address"] is not None
+                    and station["address"] != ""
+                ):
+                    label += f" - {station['address']}"
                 label += f" (ID: {station['id']})"
                 if with_geolocation:
                     if "coordinates" in station and len(station["coordinates"]) == 2:
@@ -318,9 +322,14 @@ class SyngeosFlowHandler(ConfigFlow, domain=DOMAIN):
                 )
                 self._abort_if_unique_id_configured()
 
-                return self.async_create_entry(
-                    title=f"{response['city']} - {response['address']}", data=user_input
-                )
+                station_title = f"{response['city']}"
+                if (
+                    "address" in response
+                    and response["address"] is not None
+                    and response["address"] != ""
+                ):
+                    station_title += f" - {response['address']}"
+                return self.async_create_entry(title=station_title, data=user_input)
 
         placeholders = {
             "deviceslist_url": "https://panel.syngeos.pl/",
@@ -344,8 +353,9 @@ class SyngeosFlowHandler(ConfigFlow, domain=DOMAIN):
             raise SyngeosCannotConnect
         if (
             "id" not in response
+            or response["id"] is None
             or "city" not in response
-            or "address" not in response
+            or response["city"] is None
             or "sensors" not in response
         ):
             raise SyngeosInvalidResponse
