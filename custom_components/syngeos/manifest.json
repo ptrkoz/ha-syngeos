@@ -9,5 +9,6 @@
   "integration_type": "service",
   "iot_class": "cloud_polling",
   "issue_tracker": "https://github.com/ptrkoz/ha-syngeos/issues",
+  "requirements": ["geopy==2.4.1"],
   "version": "v0.0.0"
 }

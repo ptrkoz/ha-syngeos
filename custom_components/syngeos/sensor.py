@@ -74,7 +74,6 @@ ENTITY_DESCRIPTIONS = (
     ),
     SensorEntityDescription(
         key="caqi",
-        name="CAQI index",
         state_class=SensorStateClass.MEASUREMENT,
         translation_key="caqi",
     ),
@@ -108,21 +107,18 @@ ENTITY_DESCRIPTIONS = (
     ),
     SensorEntityDescription(
         key="c6h6",
-        name="Benzene",
         state_class=SensorStateClass.MEASUREMENT,
         native_unit_of_measurement=CONCENTRATION_MICROGRAMS_PER_CUBIC_METER,
         translation_key="c6h6",
     ),
     SensorEntityDescription(
         key="ch2o",
-        name="Formaldehyde",
         state_class=SensorStateClass.MEASUREMENT,
         native_unit_of_measurement=CONCENTRATION_MICROGRAMS_PER_CUBIC_METER,
         translation_key="ch2o",
     ),
     SensorEntityDescription(
         key="noise",
-        name="Noise",
         state_class=SensorStateClass.MEASUREMENT,
         native_unit_of_measurement=UnitOfSoundPressure.DECIBEL,
         translation_key="noise",
